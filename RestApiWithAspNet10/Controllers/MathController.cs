@@ -8,7 +8,7 @@ namespace RestApiWithAspNet10.Controllers
     [Route("[controller]")]
     public class MathController : ControllerBase
     {
-        private ICalculoService _calculoService;
+        private readonly ICalculoService _calculoService;
         public MathController(ICalculoService calculoService)
         {
             _calculoService = calculoService;
