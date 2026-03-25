@@ -1,9 +1,16 @@
 ﻿using RestApiWithAspNet10.Controllers.Model;
+using RestApiWithAspNet10.Controllers.Model.Context;
 
 namespace RestApiWithAspNet10.Controllers.Service.Implementation
 {
     public class PersonServicesImplementation : IPersonServices
-    {
+    {   
+        private MSSQLContext _context;
+
+        public PersonServicesImplementation(MSSQLContext context)
+        {
+            _context = context;
+        }
         public Person FindById(long id)
         {
             var person = MockPerson((int)id);
@@ -12,12 +19,8 @@ namespace RestApiWithAspNet10.Controllers.Service.Implementation
         
         public List<Person> FindAll()
         {
-            List<Person> persons = new List<Person>();
-            for (int i = 0; i < 8; i++)
-            {
-                persons.Add(MockPerson(i));
-            }
-            return persons;
+            
+            return _context.Persons.ToList();
         }
         
         public Person Create(Person person)
