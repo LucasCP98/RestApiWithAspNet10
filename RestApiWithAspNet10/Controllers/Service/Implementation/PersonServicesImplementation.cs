@@ -11,45 +11,42 @@ namespace RestApiWithAspNet10.Controllers.Service.Implementation
         {
             _context = context;
         }
-        public Person FindById(long id)
-        {
-            var person = MockPerson((int)id);
-            return person;// Simulate finding a person by ID
-        }
-        
+
         public List<Person> FindAll()
         {
-            
+
             return _context.Persons.ToList();
+        }
+        public Person FindById(long id)
+        {
+            return _context.Persons.Find(id);
         }
         
         public Person Create(Person person)
         {
-            person.Id = new Random().Next(1, 1000); // Simulate ID generation
+            _context.Persons.Add(person);
+            _context.SaveChanges();
             return person;
         }
         
         public Person Update(Person person)
         {
+            var existingPerson = _context.Persons.Find(person.Id);
+            if (existingPerson == null)
+            {
+                return null;
+            }
+            _context.Entry(existingPerson).CurrentValues.SetValues(person);
+            _context.SaveChanges();
             return person;
         }
         
         public void Delete(long id)
         {
-            // Simulate delete operation
-        }
-        
-        private Person MockPerson(int i)
-        {
-            var person = new Person
-            {
-                Id = new Random().Next(1, 1000),
-                FirstName = "Leandro " + i,
-                LastName = "Costa " + + i ,
-                Address = "Uberlândia - Minas Gerais - Brasil",
-                Gender = "Male"
-            };
-            return person;
+            var existingPerson = _context.Persons.Find(id);
+            if (existingPerson == null) return;
+            _context.Remove(existingPerson);
+            _context.SaveChanges();
         }
     }
 }
