@@ -1,10 +1,11 @@
 
 using RestApiWithAspNet10.Controllers.Service.Implementation;
 using RestApiWithAspNet10.Controllers.Service;
-using RestApiWithAspNet10.Controllers.Utils;
+using RestApiWithAspNet10.Configurations;
+
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddTransient<ICalculoService, CalculoService>();
+builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddScoped<IPersonServices, PersonServicesImplementation>();
 // Add services to the container.
 
