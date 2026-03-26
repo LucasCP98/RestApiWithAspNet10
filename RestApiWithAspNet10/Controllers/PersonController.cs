@@ -10,22 +10,30 @@ namespace RestApiWithAspNet10.Controllers
     public class PersonController : ControllerBase
     {
         private readonly IPersonServices _personServices;
+        private readonly ILogger<PersonController> _logger;
 
-        public PersonController(IPersonServices personServices)
+        public PersonController(IPersonServices personServices, ILogger<PersonController> logger)
         {
             _personServices = personServices;
+            _logger = logger;
         }
         [HttpGet]
         public IActionResult Get()
         {
+            _logger.LogInformation("Fetching all persons");
             return Ok(_personServices.FindAll());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
+            _logger.LogInformation($"Fetching person with ID: {id}");
             var person = _personServices.FindById(id);
-            if (person == null) return NotFound();
+            if (person == null) 
+            { 
+                _logger.LogWarning($"Person with ID {id} not found");
+                return NotFound(); 
+            }
             return Ok(person);
         }
 
@@ -34,23 +42,36 @@ namespace RestApiWithAspNet10.Controllers
         // usado para cadastrar uma pessoa e o mais recomendado é o FromBody.
         public IActionResult Post([FromBody] Person person) 
         {
+            _logger.LogInformation($"Create new Person: {person.FirstName}");
             var createdPerson = _personServices.Create(person);
-            if (createdPerson == null) return NotFound();
+            if (createdPerson == null) 
+            { 
+                _logger.LogError($"Failed to create person with name {person.FirstName}");
+                return NotFound(); 
+            }
             return Ok(createdPerson);
         }
 
         [HttpPut]
         public IActionResult Put([FromBody] Person person)
         {
+            _logger.LogInformation($"Updating person with ID: {person.Id}");
             var updatePerson = _personServices.Update(person);
-            if (updatePerson == null) return NotFound();
+            if (updatePerson == null) 
+            { 
+                _logger.LogError($"Failed to upadate Person with ID: {person.Id}");
+                return NotFound();
+            }
+            _logger.LogDebug($"Person updated successfully: {person.FirstName}");
             return Ok(updatePerson);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            _logger.LogInformation($"Deleting person with ID: {id}");
             _personServices.Delete(id);
+            _logger.LogDebug($"Person with ID {id} deleted successfully");
             return NoContent();
         }
     }
