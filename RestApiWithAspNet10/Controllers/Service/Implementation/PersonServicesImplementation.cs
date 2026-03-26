@@ -1,53 +1,41 @@
 ﻿using RestApiWithAspNet10.Controllers.Model;
-using RestApiWithAspNet10.Controllers.Model.Context;
+using RestApiWithAspNet10.Repositories;
+
 
 namespace RestApiWithAspNet10.Controllers.Service.Implementation
 {
     public class PersonServicesImplementation : IPersonServices
     {   
-        private MSSQLContext _context;
-
-        public PersonServicesImplementation(MSSQLContext context)
+        private IPersonRepository _repository;
+        public PersonServicesImplementation(IPersonRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public List<Person> FindAll()
         {
 
-            return _context.Persons.ToList();
+            return _repository.FindAll();
         }
         public Person FindById(long id)
         {
-            return _context.Persons.Find(id);
+            return _repository.FindById(id);
         }
         
         public Person Create(Person person)
         {
             person.Id = 0;
-            _context.Add(person);
-            _context.SaveChanges();
-            return person;
+            return _repository.Create(person);
         }
         
         public Person Update(Person person)
         {
-            var existingPerson = _context.Persons.Find(person.Id);
-            if (existingPerson == null)
-            {
-                return null;
-            }
-            _context.Entry(existingPerson).CurrentValues.SetValues(person);
-            _context.SaveChanges();
-            return person;
+            return _repository.Update(person);
         }
         
         public void Delete(long id)
         {
-            var existingPerson = _context.Persons.Find(id);
-            if (existingPerson == null) return;
-            _context.Remove(existingPerson);
-            _context.SaveChanges();
+            _repository.Delete(id);
         }
     }
 }
