@@ -1,11 +1,14 @@
-
 using RestApiWithAspNet10.Controllers.Service.Implementation;
 using RestApiWithAspNet10.Controllers.Service;
 using RestApiWithAspNet10.Configurations;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddSerilogLogging();
+
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
+
 builder.Services.AddScoped<IPersonServices, PersonServicesImplementation>();
 // Add services to the container.
 

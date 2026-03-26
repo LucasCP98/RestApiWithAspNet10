@@ -24,7 +24,8 @@ namespace RestApiWithAspNet10.Controllers.Service.Implementation
         
         public Person Create(Person person)
         {
-            _context.Persons.Add(person);
+            person.Id = 0;
+            _context.Add(person);
             _context.SaveChanges();
             return person;
         }

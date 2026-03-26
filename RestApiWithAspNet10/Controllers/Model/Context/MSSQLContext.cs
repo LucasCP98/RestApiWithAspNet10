@@ -8,5 +8,5 @@ namespace RestApiWithAspNet10.Controllers.Model.Context
 
         public DbSet<Person> Persons { get; set; }
 
-    }
+    } 
 }

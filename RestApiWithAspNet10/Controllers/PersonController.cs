@@ -36,7 +36,7 @@ namespace RestApiWithAspNet10.Controllers
         {
             var createdPerson = _personServices.Create(person);
             if (createdPerson == null) return NotFound();
-            return Ok(_personServices.Create(createdPerson));
+            return Ok(createdPerson);
         }
 
         [HttpPut]
@@ -44,7 +44,7 @@ namespace RestApiWithAspNet10.Controllers
         {
             var updatePerson = _personServices.Update(person);
             if (updatePerson == null) return NotFound();
-            return Ok(_personServices.Update(updatePerson));
+            return Ok(updatePerson);
         }
 
         [HttpDelete("{id}")]
