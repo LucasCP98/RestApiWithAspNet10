@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RestApiWithAspNet10.Controllers.Model;
 using RestApiWithAspNet10.Controllers.Service;
 
@@ -69,9 +68,16 @@ namespace RestApiWithAspNet10.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _logger.LogInformation($"Deleting person with ID: {id}");
+            var person = _personServices.FindById(id);
+
+            if (person == null)
+            {
+                _logger.LogError($"Failed to Delete Person with ID: {id} not exist.");
+                return NotFound();
+            }
+                
+            _logger.LogInformation($"Deleting person with ID: {id} deleted successfully");
             _personServices.Delete(id);
-            _logger.LogDebug($"Person with ID {id} deleted successfully");
             return NoContent();
         }
     }
