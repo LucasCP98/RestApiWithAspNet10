@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestApiWithAspNet10.Controllers.Model.Context;
+using RestApiWithAspNet10.Model.Context;
 
 namespace RestApiWithAspNet10.Configurations
 {

@@ -1,5 +1,5 @@
-﻿using RestApiWithAspNet10.Controllers.Model;
-using RestApiWithAspNet10.Controllers.Model.Context;
+﻿using RestApiWithAspNet10.Model;
+using RestApiWithAspNet10.Model.Context;
 
 namespace RestApiWithAspNet10.Repositories.Implementation
 {

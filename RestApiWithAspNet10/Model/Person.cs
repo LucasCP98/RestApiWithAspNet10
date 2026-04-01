@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RestApiWithAspNet10.Controllers.Model
+namespace RestApiWithAspNet10.Model
 {
     [Table("person")]
     public class Person

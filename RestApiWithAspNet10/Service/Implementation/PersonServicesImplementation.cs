@@ -1,8 +1,9 @@
-﻿using RestApiWithAspNet10.Controllers.Model;
+﻿using RestApiWithAspNet10.Model;
 using RestApiWithAspNet10.Repositories;
+using RestApiWithAspNet10.Service;
 
 
-namespace RestApiWithAspNet10.Controllers.Service.Implementation
+namespace RestApiWithAspNet10.Service.Implementation
 {
     public class PersonServicesImplementation : IPersonServices
     {   

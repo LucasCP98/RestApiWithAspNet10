@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestApiWithAspNet10.Controllers.Model;
-using RestApiWithAspNet10.Controllers.Service;
+using RestApiWithAspNet10.Model;
+using RestApiWithAspNet10.Service;
 
 namespace RestApiWithAspNet10.Controllers
 {
