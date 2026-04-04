@@ -15,7 +15,11 @@ builder.Services.AddEvolveConfiguration(builder.Configuration, builder.Environme
 
 builder.Services.AddScoped<IPersonServices, PersonServicesImplementation>();
 
+builder.Services.AddScoped<IBookServices, BookServicesImplementation>();
+
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 // Add services to the container.
 

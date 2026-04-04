@@ -28,8 +28,10 @@ namespace RestApiWithAspNet10.Configurations
                         msg => Log.Information(msg))
                     {
                         Locations = new List <string> { "db/migrations", "db/dataset" },
-                        IsEraseDisabled = true,
+                        //IsEraseDisabled = true,
+                        IsEraseDisabled = false,
                     };
+                    evolve.Erase();
                     evolve.Migrate();
                 }
                 catch (Exception ex)

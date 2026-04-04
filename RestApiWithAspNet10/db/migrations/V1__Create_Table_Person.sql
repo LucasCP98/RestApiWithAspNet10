@@ -1,4 +1,4 @@
-CREATE TABLE dbo.person (
+CREATE TABLE [dbo].[person] (
 [id] bigint NOT  NULL IDENTITY,
 [first_name] varchar(80) NOT NULL,
 [last_name] varchar(80) NOT NULL,

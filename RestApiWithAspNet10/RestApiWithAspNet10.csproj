@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="db\dataset\V2__Populate_Table_Person.sql" />
+    <EmbeddedResource Include="db\dataset\V2__Populate_Table_Person.sql" />
+    <EmbeddedResource Include="db\dataset\V4__Insert_Data_in_Books.sql" />
+    <EmbeddedResource Include="db\migrations\V1__Create_Table_Person.sql" />
+    <EmbeddedResource Include="db\migrations\V3__Create_Table_Books.sql" />
   </ItemGroup>
 
   <ItemGroup>
