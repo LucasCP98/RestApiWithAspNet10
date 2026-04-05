@@ -1,16 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using RestApiWithAspNet10.;
+
 
 namespace RestApiWithAspNet10.Model
 {
     [Table("books")]
-    public class Book
+    public class Book : Base.BaseEntity
     {
-        [Key]
-        [Column("id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
         [Required]
         [Column("title", TypeName = "varchar(MAX)")]
         public string Title { get; set; }
