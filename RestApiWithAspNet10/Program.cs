@@ -17,9 +17,7 @@ builder.Services.AddScoped<IPersonServices, PersonServicesImplementation>();
 
 builder.Services.AddScoped<IBookServices, BookServicesImplementation>();
 
-builder.Services.AddScoped<IPersonRepository, PersonRepository>();
-
-builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 // Add services to the container.
 

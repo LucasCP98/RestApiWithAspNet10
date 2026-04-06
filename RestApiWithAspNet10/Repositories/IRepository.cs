@@ -1,5 +1,4 @@
-﻿using RestApiWithAspNet10.Model;
-using RestApiWithAspNet10.Model.Base;
+﻿using RestApiWithAspNet10.Model.Base;
 
 namespace RestApiWithAspNet10.Repositories
 {

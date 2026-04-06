@@ -5,8 +5,8 @@ namespace RestApiWithAspNet10.Service.Implementation
 {
     public class BookServicesImplementation : IBookServices
     {
-        private IBookRepository _repository;
-        public BookServicesImplementation(IBookRepository repository)
+        private IRepository<Book> _repository;
+        public BookServicesImplementation(IRepository<Book> repository)
         {
             _repository = repository;
         }

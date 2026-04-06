@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using RestApiWithAspNet10.;
 
 
 namespace RestApiWithAspNet10.Model

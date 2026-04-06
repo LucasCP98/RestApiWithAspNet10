@@ -1,35 +1,59 @@
-﻿using RestApiWithAspNet10.Model.Base;
-using RestApiWithAspNet10.Repositories.Implementation;
+﻿using Microsoft.EntityFrameworkCore;
+using RestApiWithAspNet10.Model.Base;
+using RestApiWithAspNet10.Model.Context;
+
 
 namespace RestApiWithAspNet10.Repositories.Implementation
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
+        private MSSQLContext _context;
+        private DbSet<T> _dataset;
+
+        public GenericRepository(MSSQLContext context)
+        {
+            _context = context;
+            _dataset = context.Set<T>();
+        }
+     
         public List<T> FindAll()
         {
-            throw new NotImplementedException();
+            return _dataset.ToList();
         }
         public T FindById(long id)
         {
-            throw new NotImplementedException();
+            return _dataset.Find(id);
         }
         public T Create(T item)
         {
-            throw new NotImplementedException();
+            item.Id = 0;
+            _context.Add(item);
+            _context.SaveChanges();
+            return item;
         }
         public T Update(T item)
         {
-            throw new NotImplementedException();
+            var existingItem = _dataset.Find(item.Id);
+            if (existingItem == null)
+            {
+                return null;
+            }
+            _context.Entry(existingItem).CurrentValues.SetValues(item);
+            _context.SaveChanges();
+            return item;
         }
 
         public void Delete(long id)
         {
-            throw new NotImplementedException();
+            var existingItem = _dataset.Find(id);
+            if (existingItem == null) return;
+            _context.Remove(existingItem);
+            _context.SaveChanges();
         }
 
         public bool Exists(long id)
         {
-            throw new NotImplementedException();
+            return _dataset.Any(e => e.Id == id);
         }
 
     }

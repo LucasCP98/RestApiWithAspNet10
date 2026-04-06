@@ -1,14 +1,13 @@
 ﻿using RestApiWithAspNet10.Model;
 using RestApiWithAspNet10.Repositories;
-using RestApiWithAspNet10.Service;
 
 
 namespace RestApiWithAspNet10.Service.Implementation
 {
     public class PersonServicesImplementation : IPersonServices
     {   
-        private IPersonRepository _repository;
-        public PersonServicesImplementation(IPersonRepository repository)
+        private IRepository<Person> _repository;
+        public PersonServicesImplementation(IRepository<Person> repository)
         {
             _repository = repository;
         }
