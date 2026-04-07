@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RestApiWithAspNet10.Model.Base;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestApiWithAspNet10.Model
 {
     [Table("person")]
-    public class Person : Base.BaseEntity
+    public class Person : BaseEntity
     {
         [Required]
         [Column("first_name", TypeName = "varchar(80)")]
