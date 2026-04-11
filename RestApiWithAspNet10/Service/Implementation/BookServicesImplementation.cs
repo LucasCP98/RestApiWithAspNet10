@@ -1,4 +1,6 @@
-﻿using RestApiWithAspNet10.Model;
+﻿using RestApiWithAspNet10.Data.Converter.Implementation;
+using RestApiWithAspNet10.Data.DTO;
+using RestApiWithAspNet10.Model;
 using RestApiWithAspNet10.Repositories;
 
 namespace RestApiWithAspNet10.Service.Implementation
@@ -6,30 +8,35 @@ namespace RestApiWithAspNet10.Service.Implementation
     public class BookServicesImplementation : IBookServices
     {
         private IRepository<Book> _repository;
+        private readonly BookConverter _converter;
         public BookServicesImplementation(IRepository<Book> repository)
         {
             _repository = repository;
+            _converter = new BookConverter();
         }
 
-        public List<Book> FindAll()
+        public List<BookDTO> FindAll()
         {
 
-            return _repository.FindAll();
+            return _converter.ParseList(_repository.FindAll());
         }
-        public Book FindById(long id)
+        public BookDTO FindById(long id)
         {
-            return _repository.FindById(id);
-        }
-
-        public Book Create(Book book)
-        {
-            book.Id = 0;
-            return _repository.Create(book);
+            return _converter.Parse(_repository.FindById(id));
         }
 
-        public Book Update(Book book)
+        public BookDTO Create(BookDTO book)
         {
-            return _repository.Update(book);
+            var entity = _converter.Parse(book);
+            entity = _repository.Create(entity);
+            return _converter.Parse(entity);
+        }
+
+        public BookDTO Update(BookDTO book)
+        {
+            var entity = _converter.Parse(book);
+            entity = _repository.Update(entity);
+            return _converter.Parse(entity);
         }
 
         public void Delete(long id)

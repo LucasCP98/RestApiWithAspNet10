@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestApiWithAspNet10.Data.DTO;
 using RestApiWithAspNet10.Model;
 using RestApiWithAspNet10.Service;
 
@@ -39,7 +40,7 @@ namespace RestApiWithAspNet10.Controllers
         [HttpPost]
         // FromBody diz que o objeto person vem do corpo da requisição (JSON)
         // usado para cadastrar uma pessoa e o mais recomendado é o FromBody.
-        public IActionResult Post([FromBody] Book book) 
+        public IActionResult Post([FromBody] BookDTO book) 
         {
             _logger.LogInformation($"Create new Book: {book.Title}");
             var createdBook = _bookServices.Create(book);
@@ -52,7 +53,7 @@ namespace RestApiWithAspNet10.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Book book)
+        public IActionResult Put([FromBody] BookDTO book)
         {
             _logger.LogInformation($"Updating book with ID: {book.Id}");
             var updateBook = _bookServices.Update(book);

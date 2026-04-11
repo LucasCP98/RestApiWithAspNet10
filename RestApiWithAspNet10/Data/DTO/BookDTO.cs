@@ -1,5 +1,9 @@
-﻿namespace RestApiWithAspNet10.Data.DTO
-{ 
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+
+namespace RestApiWithAspNet10.Data.DTO
+{
+    [Table("books")]
     public class BookDTO
     {
         public long Id { get; set; }

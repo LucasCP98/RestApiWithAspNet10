@@ -1,6 +1,7 @@
 ﻿using RestApiWithAspNet10.Model.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+// é uma entidade, que representa a tabela do banco de dados na aplicação.
 
 namespace RestApiWithAspNet10.Model
 {

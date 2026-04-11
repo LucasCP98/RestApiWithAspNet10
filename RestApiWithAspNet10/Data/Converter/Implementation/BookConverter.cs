@@ -4,40 +4,40 @@ using RestApiWithAspNet10.Model;
 
 namespace RestApiWithAspNet10.Data.Converter.Implementation
 {
-    public class PersonConverter : IParser<PersonDTO, Person>, IParser<Person, PersonDTO>
+    public class BookConverter : IParser<BookDTO, Book>, IParser<Book, BookDTO>
     {
-        public Person Parse(PersonDTO origin)
+        public Book Parse(BookDTO origin)
         {
             if (origin == null) return null;
-            return new Person
+            return new Book
             {
                 Id = origin.Id,
-                FirstName = origin.FirstName,
-                LastName = origin.LastName,
-                Address = origin.Address,
-                Gender = origin.Gender
+                Title = origin.Title,
+                Author = origin.Author,
+                Price = origin.Price,
+                LaunchDate = origin.LaunchDate  
             };
         }
-        public List<Person> ParseList(List<PersonDTO> origin)
+        public List<Book> ParseList(List<BookDTO> origin)
         {
             if (origin == null) return null;
             return origin.Select(item => Parse(item)).ToList();
         }
 
-        public PersonDTO Parse(Person origin)
+        public BookDTO Parse(Book origin)
         {
             if (origin == null) return null;
-            return new PersonDTO
+            return new BookDTO
             {
                 Id = origin.Id,
-                FirstName = origin.FirstName,
-                LastName = origin.LastName,
-                Address = origin.Address,
-                Gender = origin.Gender
+                Title = origin.Title,
+                Author = origin.Author,
+                Price = origin.Price,
+                LaunchDate = origin.LaunchDate
             };
         }
 
-        public List<PersonDTO> ParseList(List<Person> origin)
+        public List<BookDTO> ParseList(List<Book> origin)
         {
             if (origin == null) return null;
             return origin.Select(item => Parse(item)).ToList();
