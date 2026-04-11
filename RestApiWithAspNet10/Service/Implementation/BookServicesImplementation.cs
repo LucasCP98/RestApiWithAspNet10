@@ -2,8 +2,9 @@
 using RestApiWithAspNet10.Data.DTO;
 using RestApiWithAspNet10.Model;
 using RestApiWithAspNet10.Repositories;
-// Ultilizando o Mapster para converter os objetos, ao invés de criar uma classe de conversão manualmente.
-//91. 1207 Substituindo o Converter Manual pelo Mapster
+// 91. Substituindo o Converter Manual pelo Mapster.
+// Lembrando que usando o Mapster, só é necessario criar o DTO, não necessita da "bookConverter" nem da "Iparser".
+// mas vamos deixar porque a person está usando para ficar de exemplo o metodo manual.
 namespace RestApiWithAspNet10.Service.Implementation
 {
     public class BookServicesImplementation : IBookServices

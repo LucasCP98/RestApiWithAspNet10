@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestApiWithAspNet10.Data.DTO;
-using RestApiWithAspNet10.Model;
 using RestApiWithAspNet10.Service;
 
 namespace RestApiWithAspNet10.Controllers
