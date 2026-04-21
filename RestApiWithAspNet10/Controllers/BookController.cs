@@ -17,6 +17,9 @@ namespace RestApiWithAspNet10.Controllers
             _logger = logger;
         }
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(List<BookDTO>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Get()
         {
             _logger.LogInformation("Fetching all books");
@@ -24,6 +27,9 @@ namespace RestApiWithAspNet10.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(BookDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Get(long id)
         {
             _logger.LogInformation($"Fetching book with ID: {id}");
@@ -37,8 +43,9 @@ namespace RestApiWithAspNet10.Controllers
         }
 
         [HttpPost]
-        // FromBody diz que o objeto person vem do corpo da requisição (JSON)
-        // usado para cadastrar uma pessoa e o mais recomendado é o FromBody.
+        [ProducesResponseType(200, Type = typeof(BookDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Post([FromBody] BookDTO book) 
         {
             _logger.LogInformation($"Create new Book: {book.Title}");
@@ -52,6 +59,9 @@ namespace RestApiWithAspNet10.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType(200, Type = typeof(BookDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Put([FromBody] BookDTO book)
         {
             _logger.LogInformation($"Updating book with ID: {book.Id}");
@@ -66,6 +76,9 @@ namespace RestApiWithAspNet10.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(204, Type = typeof(BookDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Delete(int id)
         {
             var book = _bookServices.FindById(id);
