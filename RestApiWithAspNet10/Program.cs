@@ -11,6 +11,12 @@ builder.AddSerilogLogging();
 
 builder.Services.AddControllers().AddContentNegotiation();
 
+builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddOpenAPIConfig();
+
+builder.Services.AddSwaggerConfig();
+
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 
 builder.Services.AddEvolveConfiguration(builder.Configuration, builder.Environment);
@@ -21,16 +27,14 @@ builder.Services.AddScoped<IBookServices, BookServicesImplementation>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
-// Add services to the container.
-
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseSwaggerSpecification();
 
 app.Run();
