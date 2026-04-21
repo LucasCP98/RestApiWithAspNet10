@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddSerilogLogging();
 
+builder.Services.AddControllers().AddContentNegotiation();
+
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 
 builder.Services.AddEvolveConfiguration(builder.Configuration, builder.Environment);
@@ -20,8 +22,6 @@ builder.Services.AddScoped<IBookServices, BookServicesImplementation>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 // Add services to the container.
-
-builder.Services.AddControllers();
 
 var app = builder.Build();
 
