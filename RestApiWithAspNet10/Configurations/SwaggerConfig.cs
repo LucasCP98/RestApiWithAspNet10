@@ -32,7 +32,7 @@ namespace RestApiWithAspNet10.Configurations
             return services;
         }
 
-        public static IApplicationBuilder UseSwaggerSpecification(this IApplicationBuilder app)
+        public static IApplicationBuilder UseSwaggerConfiguration(this IApplicationBuilder app)
         {
             app.UseSwagger();
             app.UseSwaggerUI(options =>
